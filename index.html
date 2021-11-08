@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>动态表格</title>
+        <style>
+            input {
+                outline: none;
+                border: solid 1px #9e9e9e;
+            }
+
+            table {
+                margin: 100px auto;
+                border-collapse: collapse;
+            }
+
+            th, td {
+                border: 1px solid black;
+                padding: 10px 20px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <td colspan="5">
+                        <input type="button" value="新增" onclick="add()">
+                    </td>
+                </tr>
+                <tr>
+                    <th>序号</th>
+                    <th>姓名</th>
+                    <th>手机</th>
+                    <th>地址</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="template">
+                    <td id="index"></td>
+                    <td id="name"></td>
+                    <td id="phone"></td>
+                    <td id="address"></td>
+                    <td><input type="button" value="编辑" onclick="del(this)">
+                </tr>
+            </tbody>
+
+        </table>
+        <script>
+
+            var arr = [
+                {index: '1', name: '郭靖', phone: '13500000001', address: '北京海淀区中关村大街1号'},
+                {index: '2', name: '黄蓉', phone: '13500000002', address: '北京海淀区中关村大街2号'},
+                {index: '3', name: '欧阳锋', phone: '13500000003', address: '广西南宁中央大街'},
+                {index: '4', name: '梅超风', phone: '13500000004', address: '广西桂林市灵川'},
+                {index: '5', name: '杨过', phone: '13500000005', address: '河南洛阳'}
+            ];
+
+            var template = document.querySelector('tbody');
+
+            var str = ''
+            arr.forEach(value => {
+                str += `<tr>
+                            <td>${value.index}</td>
+                            <td>${value.name}</td>
+                            <td>${value.phone}</td>
+                            <td>${value.address}</td>
+                            <td><input type="button" value="编辑" onclick="del(this)"></td>
+                      </tr>`
+            })
+            template.innerHTML = str;
+
+            var add = () => {
+                    str += `<tr>
+                    <td></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="button" value="保存"></td>
+                </tr>`
+                template.innerHTML = str;
+            }
+        </script>
+    </body>
+</html>
